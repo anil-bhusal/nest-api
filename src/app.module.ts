@@ -17,6 +17,7 @@ import { CommonModule } from './common/common.module';
       database: 'nest-api',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      // ...ormConfig
     }),
     ItemModule,
     CommonModule,
