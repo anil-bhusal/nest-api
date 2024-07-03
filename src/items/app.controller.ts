@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseGuards } from '@nestjs/common';
 import { Item } from './item.entity';
 import { ItemService } from './app.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('items')
 export class ItemController {
@@ -17,6 +18,7 @@ export class ItemController {
     }
 
     @Post()
+    @UseGuards(JwtAuthGuard)
     async create(@Body() item: Item): Promise<{ status: number; message: string; data?: Item; error?: any }> {
         return this.itemService.create(item);
     }
